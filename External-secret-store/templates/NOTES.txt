@@ -1,0 +1,46 @@
+###############################################################################
+
+
+Release Name:
+  {{ .Release.Name }}
+
+ClusterSecretStore Name:
+  {{ .Values.secretStoreName }}
+
+Region:
+  {{ .Values.region }}
+
+Installed in Namespace:
+  {{ .Release.Namespace }}
+
+This ClusterSecretStore can now be used by ExternalSecret resources
+in ANY namespace.
+
+-------------------------------------------------------------------------------
+🔐 Prerequisites
+
+Ensure the Kubernetes secret "{{ .Values.credentialSecretName }}"
+exists in namespace "{{ .Values.credentialNamespace }}".
+
+If not created yet, run:
+
+kubectl create secret generic {{ .Values.credentialSecretName }} \
+  -n {{ .Values.credentialNamespace }} \
+  --from-literal=access-key=YOUR_SCW_ACCESS_KEY \
+  --from-literal=secret-key=YOUR_SCW_SECRET_KEY
+
+-------------------------------------------------------------------------------
+
+
+kubectl get clustersecretstore
+kubectl describe clustersecretstore {{ .Values.secretStoreName }}
+
+Status should show:
+  Ready=True
+
+-------------------------------------------------------------------------------
+🛠 Troubleshooting
+
+kubectl logs -n external-secrets deployment/external-secrets
+
+###############################################################################

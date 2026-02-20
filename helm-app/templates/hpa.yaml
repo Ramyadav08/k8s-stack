@@ -1,0 +1,1 @@
+{{- include "base-hpa.hpa" (dict "root" . "values" .Values.baseHPA) -}}

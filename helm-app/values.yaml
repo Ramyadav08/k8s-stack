@@ -1,0 +1,74 @@
+baseDeployment:
+  name: app
+  labels:
+    app: app
+  selectorLabels:
+    app: app
+  replicas: 1
+  reloader:
+    enabled: true
+
+
+  container:
+    name: app
+    repository: rg.fr-par.scw.cloud/app/app
+    tag: latest
+    pullPolicy: IfNotPresent
+    port: 3000
+
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "500m"
+        memory: "256Mi"
+
+    envFrom:
+      - secretRef:
+          name: app-secret
+
+  probes:
+    enabled: true
+    liveness:
+      enabled: true
+      path: /healthz
+      initialDelaySeconds: 10
+      periodSeconds: 10
+    readiness:
+      enabled: true
+      path: /healthz
+      initialDelaySeconds: 5
+      periodSeconds: 5
+    startup:
+      enabled: false
+
+baseService:
+  name: app
+  type: ClusterIP
+  labels:
+    app: app
+  selectorLabels:
+    app: app
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+
+baseHPA:
+  enabled: true
+  name: app
+  targetDeployment: app
+  minReplicas: 1
+  maxReplicas: 5
+  cpuUtilization: 70
+
+baseIngress:
+  enabled: false
+
+baseSecret:
+  enabled: true
+  name: app-secret
+  secretStoreName: scaleway-cluster-store
+  targetName: app-secret
+  remoteSecretName: API_GW_SECRET

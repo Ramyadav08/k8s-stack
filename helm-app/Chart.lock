@@ -1,0 +1,18 @@
+dependencies:
+- name: base-deployment
+  repository: oci://ghcr.io/thepackengers/charts
+  version: 1.0.0
+- name: base-service
+  repository: oci://ghcr.io/thepackengers/charts
+  version: 1.0.0
+- name: base-hpa
+  repository: oci://ghcr.io/thepackengers/charts
+  version: 1.0.0
+- name: base-ingress
+  repository: oci://ghcr.io/thepackengers/charts
+  version: 1.0.0
+- name: base-secret
+  repository: oci://ghcr.io/thepackengers/charts
+  version: 1.0.0
+digest: sha256:2d849021edd3d873c47bfb6222a26929bac5689d1215abf28763b6bee327d6b4
+generated: "2026-02-19T20:56:33.769952+05:30"

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: base-ingress
+type: library
+version: 1.0.0

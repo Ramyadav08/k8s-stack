@@ -1,0 +1,5 @@
+secretStoreName: scaleway-cluster-store
+region: fr-par
+projectId: f33e3999-6d8b-4a4f-bd52-c719bb1097f0
+credentialSecretName: scaleway-credentials
+credentialNamespace: external-secrets

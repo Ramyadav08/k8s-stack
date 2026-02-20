@@ -1,0 +1,1 @@
+{{- include "base-ingress.ingress" (dict "root" . "values" .Values.baseIngress) -}}
