@@ -31,9 +31,11 @@ jobs:
 
       - name: Package and Push Charts
         run: |
+          cd helm-library
+
           for chart in base-deployment base-service base-hpa base-ingress base-secret; do
             echo "Packaging $chart"
-            helm package helm-library/$chart
+            helm package $chart
             VERSION=$(helm show chart $chart | grep version | awk '{print $2}')
             helm push ${chart}-${VERSION}.tgz oci://ghcr.io/${{ github.repository_owner }}/charts
           done
