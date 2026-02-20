@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'helm-library/**'
+
 permissions:
   contents: read
   packages: write
@@ -31,8 +30,6 @@ jobs:
 
       - name: Package and Push Charts
         run: |
-          cd helm-library
-
           for chart in base-deployment base-service base-hpa base-ingress base-secret; do
             echo "Packaging $chart"
             helm package $chart
