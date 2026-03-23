@@ -1,0 +1,6 @@
+issuer:
+  name: letsencrypt-staging
+  email: dev@thepackengers.com
+  server: https://acme-v02.api.letsencrypt.org/directory
+  privateKeySecretName: letsencrypt-staging-account-key
+  ingressClassName: nginx
